@@ -1,4 +1,5 @@
 <?php
+
 $is_auth = rand(0, 1);
 
 $user_name = 'Кирилл'; // укажите здесь ваше имя
@@ -44,23 +45,23 @@ $posts = [
 function cut_text($string, $max_length = 300)
 {
     $words = explode(' ', $string);
-    $final_length = 0;
     $length = 0;
     $link = '<a class="post-text__more-link" href="#">Читать далее</a>';
 //Считает кол-во символов
-    foreach ($words as $word) {
-        $length = $final_length + strlen($word);
-        $final_length = $length;
-    }
+    $final_length= mb_strlen ($string);
+
 // Если кол-во больше 300, то обрезает текст
     if ($final_length > $max_length) {
 
         $final_length = 0;
         foreach ($words as $word) {
-            $length = $final_length + strlen($word);
+            $length = $final_length + mb_strlen($word);
             if ($length < $max_length) {
                 $final_length = $length;
                 $result[] = $word;
+            }
+            else {
+                break;
             }
         }
 
