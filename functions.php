@@ -51,3 +51,17 @@ function cut_text($string, $max_length = 300)
     return $new_text;
 }
 
+//Возвращает код iframe для вставки youtube видео на страницу
+
+function embed_youtube_video($youtube_url)
+{
+    $res = "";
+    $id = extract_youtube_id($youtube_url);
+
+    if ($id) {
+        $src = "https://www.youtube.com/embed/" . $id;
+        $res = '<iframe width="760" height="400" src="' . $src . '" frameborder="0"></iframe>';
+    }
+
+    return $res;
+}
